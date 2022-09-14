@@ -32,19 +32,19 @@ public class ToaPuzzleSolverPlugin extends Plugin {
 
 	private int lastRegionId = -1;
 
-	//all of them so the panel doesn't continuously hide during the raid
+	//Adds all instance IDs
 	private static final List<Integer> TOA_INSTANCE_IDS = Arrays.asList( 13454, 14164,14676,15188,15444,
 			15700,15955,13906,14162,
 			14674,15186,15698,15954,
 			15953,14160,14672,15184,15696);
-	//specific rooms
+	//IDs for specific rooms
 	private static final List<Integer> TOA_PUZZLE_IDS = Arrays.asList(14674,15186,14162,15698);
 	private static final int TOA_PUZZLE_AKKHA = 14674;
 	private static final int TOA_PUZZLE_BABA = 15186;
 	private static final int TOA_PUZZLE_KEPHRI = 14162;
 	private static final int TOA_PUZZLE_ZEBAK = 15698;
 
-
+	//
 	public enum PuzzleRoom {
 		NONE("Not in a puzzle room",0),
 		AKKHA("Akkha",TOA_PUZZLE_AKKHA),
@@ -107,10 +107,12 @@ public class ToaPuzzleSolverPlugin extends Plugin {
 		checkRegion();
 	}
 
+	// Getter for current room
 	public PuzzleRoom getRoom() {
 		return currentRoom;
 	}
 
+	// Setter for current room
 	private void setRoom(int regionId) {
 		switch(regionId) {
 			case TOA_PUZZLE_AKKHA:
@@ -130,6 +132,8 @@ public class ToaPuzzleSolverPlugin extends Plugin {
 				return;
 		}
 	}
+
+	// checks if in TOA region ID
 	private void checkRegion() {
 		final int regionId = getRegionId();
 		if (!TOA_INSTANCE_IDS.contains(regionId)) {
@@ -144,6 +148,7 @@ public class ToaPuzzleSolverPlugin extends Plugin {
 		lastRegionId = regionId;
 	}
 
+	// Getter for region ID
 	private int getRegionId() {
 		Player player = client.getLocalPlayer();
 		if (player == null) {
